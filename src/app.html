@@ -1,0 +1,35 @@
+<!-- <template>
+  <h1>${message}</h1>
+</template> -->
+
+<template>
+  <h1>${heading}</h1>
+
+
+<!-- The above syntax creates a one-way data-binding to the heading property. By "one-way" we mean that the dataflow is unidirectional and only changes to the heading property will affect the view. There is no "reverse" flow from the view back to the view-model.  In order to render, we need to create a view for the app component. This introduces the next convention of Aurelia. To create a view for any class, simply create an HTML file with the same name as the TypeScript module but change the file extension to .html. Inside that view, you can place an HTML 5 template with data binding expressions declaring how the view should render an instance of the class. Let's start with a very basic view of our app, overwrite src/app.html provided by the skeleton. See: https://aurelia.io/docs/tutorials/creating-a-todo-app#rendering-the-app   -->
+
+<!-- <form submit.trigger="addTodo()">
+  <input type="text" value.bind="todoDescription">
+  <button type="submit" disabled.bind="!todoDescription">Add Todo</button>
+</form> --> 
+
+<!-- the form above: since this is an input and you are binding its value then .bind will cause Aurelia to set up a two-way binding. This means that any time the view-model's todoDescription changes, it will be updated in the input's value property but also any time the input's value property changes, the view-model will have its todoDescription updated as well. -->
+
+<!--Revision of form follows. see  https://aurelia.io/docs/tutorials/creating-a-todo-app#conclusion -->
+
+<form submit.trigger="addTodo()">
+  <input type="text" value.bind="todoDescription">
+  <button type="submit" disabled.bind="!todoDescription">Add Todo</button>
+</form>
+
+<ul>
+  <li repeat.for="todo of todos">
+    <input type="checkbox" checked.bind="todo.done">
+
+    <span css="text-decoration: ${todo.done ? 'line-through' : 'none'}">
+      ${todo.description}
+    </span>
+    <button click.trigger="removeTodo(todo)">Remove</button>
+  </li>
+</ul>
+</template>
